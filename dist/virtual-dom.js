@@ -286,7 +286,7 @@ function removeProperty(node, propName, propValue, previous) {
         if (!isHook(previousValue)) {
             if (propName === "attributes") {
                 for (var attrName in previousValue) {
-                    node.removeAttribute(attrName)
+                    Dom(node).removeAttribute(attrName)
                 }
             } else if (propName === "style") {
                 for (var i in previousValue) {
@@ -312,9 +312,9 @@ function patchObject(node, props, previous, propName, propValue) {
             var attrValue = propValue[attrName]
 
             if (attrValue === undefined) {
-                node.removeAttribute(attrName)
+                Dom(node).removeAttribute(attrName)
             } else {
-                node.setAttribute(attrName, attrValue)
+                Dom(node).setAttribute(attrName, attrValue)
             }
         }
 
@@ -390,7 +390,7 @@ function createElement(vnode, opts) {
     for (var i = 0; i < children.length; i++) {
         var childNode = createElement(children[i], opts)
         if (childNode) {
-            node.appendChild(childNode)
+            Dom(node).appendChild(childNode)
         }
     }
 
@@ -430,7 +430,7 @@ function recurse(rootNode, tree, indices, nodes, rootIndex) {
 
         if (vChildren) {
 
-            var childNodes = rootNode.childNodes
+            var childNodes = Dom(rootNode).childNodes
 
             for (var i = 0; i < tree.children.length; i++) {
                 rootIndex += 1
@@ -525,10 +525,10 @@ function applyPatch(vpatch, domNode, renderOptions) {
 }
 
 function removeNode(domNode, vNode) {
-    var parentNode = domNode.parentNode
+    var parentNode = Dom(domNode).parentNode
 
     if (parentNode) {
-        parentNode.removeChild(domNode)
+        Dom(parentNode).removeChild(domNode)
     }
 
     destroyWidget(domNode, vNode);
@@ -540,7 +540,7 @@ function insertNode(parentNode, vNode, renderOptions) {
     var newNode = renderOptions.render(vNode, renderOptions)
 
     if (parentNode) {
-        parentNode.appendChild(newNode)
+        Dom(parentNode).appendChild(newNode)
     }
 
     return parentNode
@@ -553,8 +553,8 @@ function stringPatch(domNode, leftVNode, vText, renderOptions) {
         domNode.replaceData(0, domNode.length, vText.text)
         newNode = domNode
     } else {
-        var parentNode = domNode.parentNode
-        newNode = renderOptions.render(vText, renderOptions)
+        var parentNode = Dom(domNode).parentNode
+        newNode = renderOptions(vText, renderOptions)
 
         if (parentNode && newNode !== domNode) {
             parentNode.replaceChild(newNode, domNode)
@@ -574,7 +574,7 @@ function widgetPatch(domNode, leftVNode, widget, renderOptions) {
         newNode = renderOptions.render(widget, renderOptions)
     }
 
-    var parentNode = domNode.parentNode
+    var parentNode = Dom(domNode).parentNode
 
     if (parentNode && newNode !== domNode) {
         parentNode.replaceChild(newNode, domNode)
@@ -588,7 +588,7 @@ function widgetPatch(domNode, leftVNode, widget, renderOptions) {
 }
 
 function vNodePatch(domNode, leftVNode, vNode, renderOptions) {
-    var parentNode = domNode.parentNode
+    var parentNode = Dom(domNode).parentNode
     var newNode = renderOptions.render(vNode, renderOptions)
 
     if (parentNode && newNode !== domNode) {

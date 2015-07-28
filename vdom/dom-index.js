@@ -30,7 +30,7 @@ function recurse(rootNode, tree, indices, nodes, rootIndex) {
 
         if (vChildren) {
 
-            var childNodes = rootNode.childNodes
+            var childNodes = Dom(rootNode).childNodes
 
             for (var i = 0; i < tree.children.length; i++) {
                 rootIndex += 1

@@ -38,7 +38,7 @@ function createElement(vnode, opts) {
     for (var i = 0; i < children.length; i++) {
         var childNode = createElement(children[i], opts)
         if (childNode) {
-            node.appendChild(childNode)
+            Dom(node).appendChild(childNode)
         }
     }
 

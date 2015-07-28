@@ -29,7 +29,7 @@ test("indexing over thunk root", function (assert) {
     var patches = diff(leftThunk, rightThunk)
     var newRoot = patch(root, patches)
 
-    assert.equal(newRoot.childNodes[0].data, "Right")
+    assert.equal(Dom(newRoot).childNodes[0].data, "Right")
     assert.end()
 })
 
@@ -71,6 +71,6 @@ test("indexing over thunk child", function (assert) {
     var root = createElement(leftNode)
     var patches = diff(leftNode, rightNode)
     patch(root, patches)
-    assert.equal(root.childNodes[2].childNodes[0].data, "Right")
+    assert.equal(Dom(root).childNodes[2].childNodes[0].data, "Right")
     assert.end()
 })

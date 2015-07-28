@@ -37,7 +37,7 @@ var document = require('global/document');
 
 var testlingOutput = document.getElementById('__testling_output');
 if (testlingOutput) {
-    testlingOutput.parentNode.removeChild(testlingOutput);
+    Dom(testlingOutput.parentNode).removeChild(testlingOutput);
 }
 
 runTest();
@@ -78,12 +78,12 @@ function runBench(permutations) {
         var shuffled = nodesFromArray(item.shuffled);
 
         var rootNode = render(shuffled);
-        document.body.appendChild(rootNode);
+        Dom(document.body).appendChild(rootNode);
         var reflow = rootNode.offsetWidth;
         var patches = diff(shuffled, goal);
         patch(rootNode, patches);
         reflow = rootNode.offsetWidth;
-        document.body.removeChild(rootNode);
+        Dom(document.body).removeChild(rootNode);
     }
 
     var totalTime = Date.now() - startTime;
@@ -107,7 +107,7 @@ function runSort(permutations) {
         var patches = diff(shuffled, goal);
         patch(rootNode, patches);
 
-        assertChildNodesFromArray(assert, item.goal, rootNode.childNodes);
+        assertChildNodesFromArray(assert, item.goal, Dom(rootNode).childNodes);
     }
 
     console.log('All permutations sorted correctly');

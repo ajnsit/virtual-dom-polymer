@@ -17,7 +17,7 @@ function assertPachedNodeIsMarked(leftNode, rightNode, assert) {
     var root = createElementCustom(leftNode)
     var patches = diff(leftNode, rightNode)
     var newRoot = patch(root, patches, { render: createElementCustom })
-    assert.equal(newRoot.childNodes[0].customCreation, true)
+    assert.equal(Dom(newRoot).childNodes[0].customCreation, true)
     assert.end()
 }
 
