@@ -1,0 +1,25 @@
+{
+  "name": "virtual-dom-polymer",
+  "main": "index.js",
+  "version": "2.1.0",
+  "homepage": "https://github.com/ajnsit/virtual-dom-polymer",
+  "authors": [
+    "Matt-Esch <matt@mattesch.info>",
+    "Anupam Jain <ajnsit@gmail.com>"
+  ],
+  "description": "A virtual Dom implementation that works with Polymer. This is a port of - https://github.com/Matt-Esch/virtual-dom",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}
