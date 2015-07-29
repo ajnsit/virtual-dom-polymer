@@ -1,6 +1,8 @@
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook.js")
 
+var Dom = require("../polymer-dom.js")
+
 module.exports = applyProperties
 
 function applyProperties(node, props, previous) {

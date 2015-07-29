@@ -4,6 +4,8 @@
 // We only recurse into a DOM node if we know that it contains a child of
 // interest.
 
+var Dom = require("../polymer-dom.js")
+
 var noChild = {}
 
 module.exports = domIndex

@@ -7,6 +7,8 @@ var isVText = require("../vnode/is-vtext.js")
 var isWidget = require("../vnode/is-widget.js")
 var handleThunk = require("../vnode/handle-thunk.js")
 
+var Dom = require("../polymer-dom.js")
+
 module.exports = createElement
 
 function createElement(vnode, opts) {

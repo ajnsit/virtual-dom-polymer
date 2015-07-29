@@ -5,6 +5,8 @@ var VPatch = require("../vnode/vpatch.js")
 
 var updateWidget = require("./update-widget")
 
+var Dom = require("../polymer-dom.js")
+
 module.exports = applyPatch
 
 function applyPatch(vpatch, domNode, renderOptions) {

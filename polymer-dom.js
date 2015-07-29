@@ -1,11 +1,13 @@
 // Perform dom manipulation through Polymer.dom if available
 
-var Polydom;
+var Dom;
 
 if(Polymer && typeof Polymer.dom === 'function') {
     // Bind to Polymer.dom
-    Polydom = Polymer.dom.bind(Polymer);
+    Dom = Polymer.dom.bind(Polymer);
 } else {
     // Identity function
-    Polydom = function(x) {return x;};
+    Dom = function(x) {return x;};
 }
+
+module.exports = Dom;
