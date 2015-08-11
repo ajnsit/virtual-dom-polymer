@@ -12,6 +12,8 @@ var assertChildNodesFromArray = require("./lib/assert-childNodes-from-array.js")
 
 var VPatch = require("../vnode/vpatch.js")
 
+var Dom = require("../polymer-dom.js")
+
 test("keys get reordered", function (assert) {
     var leftNode = nodesFromArray(["1", "2", "3", "4", "test", "6", "good", "7"])
     var rightNode = nodesFromArray(["7", "4", "3", "2", "6", "test", "good", "1"])

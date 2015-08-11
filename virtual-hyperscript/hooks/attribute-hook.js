@@ -18,7 +18,7 @@ AttributeHook.prototype.hook = function (node, prop, prev) {
         return;
     }
 
-    Dom(node).setAttributeNS(this.namespace, prop, this.value);
+    node.setAttributeNS(this.namespace, prop, this.value);
 };
 
 AttributeHook.prototype.unhook = function (node, prop, next) {
@@ -29,7 +29,7 @@ AttributeHook.prototype.unhook = function (node, prop, next) {
 
     var colonPosition = prop.indexOf(':');
     var localName = colonPosition > -1 ? prop.substr(colonPosition + 1) : prop;
-    Dom(node).removeAttributeNS(this.namespace, localName);
+    node.removeAttributeNS(this.namespace, localName);
 };
 
 AttributeHook.prototype.type = 'AttributeHook';

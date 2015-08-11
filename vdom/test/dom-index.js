@@ -6,6 +6,8 @@ var diff = require("../../vtree/diff")
 var createElement = require("../create-element")
 var patch = require("../patch")
 
+var Dom = require("../../polymer-dom.js")
+
 test("indexing over thunk root", function (assert) {
     var leftThunk = {
         type: "Thunk",

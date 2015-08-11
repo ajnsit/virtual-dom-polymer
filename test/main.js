@@ -10,7 +10,7 @@ var version = require("../vnode/version")
 var assertEqualDom = require("./lib/assert-equal-dom.js")
 var patchCount = require("./lib/patch-count.js")
 
-
+var Dom = require("../polymer-dom.js")
 
 // VirtualNode tests
 test("Node is a function", function (assert) {

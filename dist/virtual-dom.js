@@ -254,6 +254,8 @@ module.exports = patch
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook.js")
 
+var Dom = require("../polymer-dom.js")
+
 module.exports = applyProperties
 
 function applyProperties(node, props, previous) {
@@ -359,6 +361,8 @@ var isVText = require("../vnode/is-vtext.js")
 var isWidget = require("../vnode/is-widget.js")
 var handleThunk = require("../vnode/handle-thunk.js")
 
+var Dom = require("../polymer-dom.js")
+
 module.exports = createElement
 
 function createElement(vnode, opts) {
@@ -405,6 +409,8 @@ function createElement(vnode, opts) {
 // interest.
 
 var noChild = {}
+
+var Dom = require("../polymer-dom.js")
 
 module.exports = domIndex
 
@@ -492,6 +498,8 @@ var VPatch = require("../vnode/vpatch.js")
 
 var updateWidget = require("./update-widget")
 
+var Dom = require("../polymer-dom.js")
+
 module.exports = applyPatch
 
 function applyPatch(vpatch, domNode, renderOptions) {
@@ -554,7 +562,7 @@ function stringPatch(domNode, leftVNode, vText, renderOptions) {
         newNode = domNode
     } else {
         var parentNode = Dom(domNode).parentNode
-        newNode = renderOptions(vText, renderOptions)
+        newNode = renderOptions.render(vText, renderOptions)
 
         if (parentNode && newNode !== domNode) {
             parentNode.replaceChild(newNode, domNode)
@@ -605,7 +613,7 @@ function destroyWidget(domNode, w) {
 }
 
 function reorderChildren(domNode, moves) {
-    var childNodes = domNode.childNodes
+    var childNodes = Dom(domNode).childNodes
     var keyMap = {}
     var node
     var remove
@@ -617,7 +625,7 @@ function reorderChildren(domNode, moves) {
         if (remove.key) {
             keyMap[remove.key] = node
         }
-        domNode.removeChild(node)
+        Dom(domNode).removeChild(node)
     }
 
     var length = childNodes.length
@@ -625,13 +633,13 @@ function reorderChildren(domNode, moves) {
         insert = moves.inserts[j]
         node = keyMap[insert.key]
         // this is the weirdest bug i've ever seen in webkit
-        domNode.insertBefore(node, insert.to >= length++ ? null : childNodes[insert.to])
+        Dom(domNode).insertBefore(node, insert.to >= length++ ? null : childNodes[insert.to])
     }
 }
 
 function replaceRoot(oldRoot, newRoot) {
-    if (oldRoot && newRoot && oldRoot !== newRoot && oldRoot.parentNode) {
-        oldRoot.parentNode.replaceChild(newRoot, oldRoot)
+    if (oldRoot && newRoot && oldRoot !== newRoot && Dom(oldRoot).parentNode) {
+        Dom(oldRoot).parentNode.replaceChild(newRoot, oldRoot)
     }
 
     return newRoot;

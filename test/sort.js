@@ -35,6 +35,8 @@ var assert = require('assert');
 
 var document = require('global/document');
 
+var Dom = require("../polymer-dom.js")
+
 var testlingOutput = document.getElementById('__testling_output');
 if (testlingOutput) {
     Dom(testlingOutput.parentNode).removeChild(testlingOutput);

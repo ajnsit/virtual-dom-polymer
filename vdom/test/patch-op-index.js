@@ -7,6 +7,8 @@ var document = require("global/document")
 var createElement = require("../create-element")
 var patch = require("../patch")
 
+var Dom = require("../../polymer-dom.js")
+
 var createElementCustom = function(vnode) {
     var created = createElement(vnode)
     created.customCreation = true
